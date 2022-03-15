@@ -1,7 +1,7 @@
 # UART - Hello World!
 
 ## Introduction
-In this tutorial we will set up a UART communication for the STM32F411E-DISCO BOARD. UART is usefull for communicating between microcontroller and a computer. Using UART communication can be helpful when troubleshooting. It can also be as communication between microcontrollers.
+In this tutorial we will set up a UART communication for the STM32F411E-DISCO BOARD. UART is useful for communicating between microcontroller and a computer. Using UART communication can be helpful when troubleshooting. It can also be as communication between microcontrollers.
 
 ## Hardware Setup
 We experienced some trouble using the ST-Link as a UART so we had to connect an external TTL to USB adaptor. We connected GND, TX and RX of the adaptor to GND, PA3, and PA2 respectively of the Discovery board.
