@@ -16,7 +16,9 @@ Using DMA in combination to access the ADC continously instead of using CPU to h
 
 
 ## Hardware Setup
-
+<p align="center"> 
+    <img src = "ADChardware.png">
+</p>
 
 ## STM32Cube IDE Setup
 - Create a new STM32 Project
