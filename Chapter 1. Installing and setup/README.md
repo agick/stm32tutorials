@@ -2,4 +2,4 @@
 
 ## What is STM32CubeIDE
 
-STM32CubeIDE is a IDE (Integrated Development Environment) for the STM32 microcontrollers. It is a software application that makes it easier to program your 
+STM32CubeIDE is an IDE (Integrated Development Environment) for the STM32 microcontrollers. It is a software application that makes it easier to program your STM32 microcontrollers.
