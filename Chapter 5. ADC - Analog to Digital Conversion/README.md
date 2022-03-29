@@ -71,3 +71,8 @@ There are many GPIO pins on the Discovery Board that can be configured to be ADC
     /* USER CODE BEGIN 3 */
   }
   ```
+You can now open your serial monitor and the ADC values are shown.
+
+<p align="center">
+    <img src = "ADCrealTerm.png">
+</p>
