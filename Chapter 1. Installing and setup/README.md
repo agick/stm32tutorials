@@ -28,7 +28,7 @@ Go to the Board Selector Tab and search for your specific board. Since you proba
 
 
 <p align="center"> 
-    <img src = "firstProject.png">
+    <img src = "firstProject.png" height="300">
 </p>
 
 Name your project and click finish. Wait a few seconds for your IDE to setup the project file.
@@ -98,7 +98,7 @@ next we make a delay of 500 milli seconds by using the function HAL_Delay()
  Now you can press the Run icon.
 
  <p align="center"> 
-    <img src = "run.png">
+    <img src = "run.png" height="300">
 </p>
 
 Press OK. Now the blue LED flashes every 500 milli seconds.
