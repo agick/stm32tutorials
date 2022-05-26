@@ -10,7 +10,7 @@ We do have some things to do
 - [] Interrupt
 - [x] UART
 - [x] ADC - UART
-- [] I2C
+- [] (I2C)
 - [] Bluetooth connection with App
 - [] ADC - DMA - BLE 
 
