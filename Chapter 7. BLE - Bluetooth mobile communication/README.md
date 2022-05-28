@@ -79,9 +79,24 @@ You should now be able to upload the code to the microcontroller.
 
 The app "ST BLE Sensor" is available for download on both google play and app store. You can download this app to test that the communication between your phone and the nucleo board is working. 
 
-ST also provides the code for the app. However they seem to link to some github repositories as dependencies within the application without any version control. This makes it so that the current version of the app does not run out of the box, because the repositories are no longer compatible with the application code, we had to do a lot of modifications to make the app run. We therefore provide our own version of the app at https://github.com/agick/codeforbluetoothapp, that should run without any issues. This version does however have some features removed that are present in the original app.
+ST also provides the code for the app. However they seem to link to some github repositories as dependencies within the application without any version control. This makes it so that the current version of the app does not run out of the box, because the repositories are no longer compatible with the application code. We had to do a lot of modifications to make the app run. Therefore we recommend just using the app available in app store and google play.
 
-### Modifying the code to send custom values
+If you have the app open, press "Connect one device". Your device should then show up.
+
+<div style="display: flex; justify-content: center">
+    <img src = "./Images/AppStep1.jpg" width="50%">
+    <img src = "./Images/AppStep2.jpg" width="50%">
+</div>
+
+<div style="display: flex; justify-content: center">
+    <img src = "./Images/AppStep3.jpg" width="50%">
+    <img src = "./Images/AppStep4.jpg" width="50%">
+</div>
+
+
+### Sending ECG data through BLE
+
+We will now look at how we can transfer a custom value using the example code. We could add a new service and characteristic for this purpose, but for simplicity we will use a already existing characterisitic and just change the pressure value that is being transfered. For our input we will add a ECG sensor to PB0, which corresponds to ADC_IN8. 
 
 The example code has two function calls related to the BLE functionality in the main.c file. These function calls are to the functions "MX_BlueNRG_MS_Init" and "MX_BlueNRG_MS_Process". The init function is called to setup the BLE services and characteristics and make the controller visible and the process function is called repeatedly in the while loop and handles the syncronization of data between the controller and a connected device. The code for the main function is illustrated below.
 
@@ -251,3 +266,29 @@ void MX_BlueNRG_MS_Init(void)
 ```
 
 Some things to notice that it does. It detects the software and hardware version of the expansion board and automatically detects which board is being used. It recognizes the board as IDB05A1, but this is fine, even though we are using IDB05A2. Then it reads a static random address from the board using the function "aci_hal_read_config_data". It is also possible to change the code to assign a public address, but we will not go into detail about how to do that in this tutorial. It then sets the device name using "aci_gatt_update_char_value" and sets auth requirements using "aci_gap_set_auth_requirement", where it is possible to specify a password to establish a connection to the device. It then adds the services along with their characteristics. 
+
+The process code looks like this. 
+
+```c
+void MX_BlueNRG_MS_Process(void)
+{
+  /* USER CODE BEGIN BlueNRG_MS_Process_PreTreatment */
+
+  /* USER CODE END BlueNRG_MS_Process_PreTreatment */
+
+  User_Process();
+  hci_user_evt_proc();
+
+  /* USER CODE BEGIN BlueNRG_MS_Process_PostTreatment */
+
+  /* USER CODE END BlueNRG_MS_Process_PostTreatment */
+}
+```
+
+The function that we are interested in is "User_Process". Which look like this.
+
+```c
+
+```
+
+
