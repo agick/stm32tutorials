@@ -96,7 +96,7 @@ If you have the app open, press "Connect one device". Your device should then sh
 
 ### Sending ECG data through BLE
 
-We will now look at how we can transfer a uint32_t value using the example code. We could add a new service and characteristic for this purpose, but for simplicity we will use a already existing characterisitic and just change the pressure value that is being transfered. For our input we will add a ECG sensor to PB0, which corresponds to ADC_IN8. The sensor is shown below.
+We will now look at how we can transfer a uint32_t value using the example code. We could add a new service and characteristic for this purpose, but for simplicity we will use a already existing characterisitic and just change the pressure value that is being transfered. For our input we will add a ECG sensor to PB0, which corresponds to ADC_IN8. We are using the AD8232 along with the leads and electrodes that came with the sensorchip. Making a portable ECG device can be useful in poor areas where access to a regular ECG measurement is difficult to get access to. The sensor is shown below.
 
 <p align="center"> 
     <img src = "Images/ad8232.jpeg">
