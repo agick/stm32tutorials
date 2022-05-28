@@ -96,7 +96,16 @@ If you have the app open, press "Connect one device". Your device should then sh
 
 ### Sending ECG data through BLE
 
-We will now look at how we can transfer a custom value using the example code. We could add a new service and characteristic for this purpose, but for simplicity we will use a already existing characterisitic and just change the pressure value that is being transfered. For our input we will add a ECG sensor to PB0, which corresponds to ADC_IN8. 
+We will now look at how we can transfer a uint32_t value using the example code. We could add a new service and characteristic for this purpose, but for simplicity we will use a already existing characterisitic and just change the pressure value that is being transfered. For our input we will add a ECG sensor to PB0, which corresponds to ADC_IN8. The sensor is shown below.
+
+<p align="center"> 
+    <img src = "ad8232.jpeg">
+</p>
+ We put the electrodes in positions as seen in the image below.
+<p align="center"> 
+    <img src = "ECGplacement.jpg">
+</p>
+
 
 The example code has two function calls related to the BLE functionality in the main.c file. These function calls are to the functions "MX_BlueNRG_MS_Init" and "MX_BlueNRG_MS_Process". The init function is called to setup the BLE services and characteristics and make the controller visible and the process function is called repeatedly in the while loop and handles the syncronization of data between the controller and a connected device. The code for the main function is illustrated below.
 
@@ -285,10 +294,70 @@ void MX_BlueNRG_MS_Process(void)
 }
 ```
 
-The function that we are interested in is "User_Process". Which look like this.
+The function that we are interested in is "User_Process". Our modified version looks like this, where we have added a function call to "HAL_ADC_GetValue" given a global handle that we have defined in main.h as "extern ADC_HandleTypeDef globalHandleADC1". We have also adjusted the HAL_DELAY to 5 miliseconds.
 
 ```c
+static void User_Process(void)
+{
+  float data_t;
+  float data_p;
+  static uint32_t counter = 0;
 
+  if (set_connectable)
+  {
+    Set_DeviceConnectable();
+    set_connectable = FALSE;
+  }
+
+#if USE_BUTTON
+  /* Check if the user has pushed the button */
+  if (user_button_pressed)
+  {
+    /* Debouncing */
+    HAL_Delay(50);
+
+    /* Wait until the User Button is released */
+    while (BSP_PB_GetState(BUTTON_KEY) == !user_button_init_state);
+
+    /* Debouncing */
+    HAL_Delay(50);
+#endif
+    BSP_LED_Toggle(LED2);
+
+    if (connected)
+    {
+      /* Set a random seed */
+      srand(HAL_GetTick());
+
+      /* Update emulated Environmental data */
+      Set_Random_Environmental_Values(&data_t, &data_p);
+
+      /* We get the raw input of our ECG sensor */
+      uint32_t rawInput = HAL_ADC_GetValue(&globalHandleADC1);
+
+      /* We pass the rawInput variable instead of data_p */
+      BlueMS_Environmental_Update((int32_t)(rawInput), (int16_t)(data_t * 10));
+
+      /* Update emulated Acceleration, Gyroscope and Sensor Fusion data */
+      Set_Random_Motion_Values(counter);
+      Acc_Update(&x_axes, &g_axes, &m_axes);
+      Quat_Update(&q_axes);
+
+      counter ++;
+      if (counter == 40) {
+        counter = 0;
+        Reset_Motion_Values();
+      }
+#if !USE_BUTTON
+      HAL_Delay(5); /* wait 0.005 sec before sending new data */
+#endif
+    }
+#if USE_BUTTON
+    /* Reset the User Button flag */
+    user_button_pressed = 0;
+  }
+#endif
+}
 ```
 
 
