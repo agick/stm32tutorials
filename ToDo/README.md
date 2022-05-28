@@ -1,18 +1,6 @@
-## To Do List
+# About
 
-We do have some things to do
-
-
-## Chapters to write
-
-- [X] Installing
-- [X] GPIO
-- [X] Interrupt
-- [x] UART
-- [x] ADC - UART
-- [] Bluetooth connection with App
-- [] ADC - DMA - BLE 
-
+This github repo at https://github.com/agick/stm32tutorials, contains tutorials on features related to the STM32 microcontroller.
 
 ## Future Improvements
 Instead of transmitting the measurement values one at a time we should try to set up the ADC - DMA and when the first half of the buffer is full it should be transmitted while the second half of the buffer fills up. When the second half of the buffer is being transmitted the first half of the buffer should be filled. Using the ADC - DMA would allow us to increase the sampling frequency and also ensure that we would have a constant sampling frequency. 
