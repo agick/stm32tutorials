@@ -99,11 +99,11 @@ If you have the app open, press "Connect one device". Your device should then sh
 We will now look at how we can transfer a uint32_t value using the example code. We could add a new service and characteristic for this purpose, but for simplicity we will use a already existing characterisitic and just change the pressure value that is being transfered. For our input we will add a ECG sensor to PB0, which corresponds to ADC_IN8. The sensor is shown below.
 
 <p align="center"> 
-    <img src = "ad8232.jpeg">
+    <img src = "Images/ad8232.jpeg">
 </p>
  We put the electrodes in positions as seen in the image below.
 <p align="center"> 
-    <img src = "ECGplacement.jpg">
+    <img src = "Images/ECGplacement.jpg">
 </p>
 
 
@@ -136,6 +136,7 @@ int main(void)
   MX_GPIO_Init();
   MX_BlueNRG_MS_Init();
   /* USER CODE BEGIN 2 */
+  globalHandleADC1 = hadc1;
 
   /* USER CODE END 2 */
 
@@ -143,6 +144,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+      HAL_ADC_Start(&hadc1);
     /* USER CODE END WHILE */
 
   MX_BlueNRG_MS_Process();
@@ -360,4 +362,9 @@ static void User_Process(void)
 }
 ```
 
+Now the code sends the value that it recieves from the ADC input connected to the ECG sensor. We can then plot the value as shown in the second image.
 
+<div style="display: flex; justify-content: center">
+    <img src = "./Images/ECG1.jpg" width="50%">
+    <img src = "./Images/ECG2.jpg" width="50%">
+</div>
