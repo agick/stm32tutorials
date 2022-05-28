@@ -49,7 +49,7 @@ Then make sure that the USART and SPI are configured correctly for the BLE to wo
     <img src = "./Images/SPIConfig.png">
 </p>
 
-Next goto settings for the software expansion X-Cube-BLE1 that you just installed located under software packs, in the left menu. Then select platform settings and set the values as they are given from the image. You might have different values depending on your pin configuration, but just make sure that all settings are set.
+Next go to settings for the software expansion X-Cube-BLE1 that you just installed located under software packs, in the left menu. Then select platform settings and set the values as they are given from the image. You might have different values depending on your pin configuration, but just make sure that all settings are set.
 
 <p align="center"> 
     <img src = "./Images/XCubeBLE1PlatformSettings.png">
@@ -61,7 +61,7 @@ You can also adjust the parameter settings, but this is optional. We set BLE1_DE
     <img src = "./Images/XCubeBLE1ParameterSettings.png">
 </p>
 
-A important step is to enable interrupts. In the left most menu under System Core, choose GPIO. Under GPIO choose NVIC and make sure that "EXTI line0 interrupt" is enabled. 
+An important step is to enable interrupts. In the left most menu under System Core, choose GPIO. Under GPIO choose NVIC and make sure that "EXTI line0 interrupt" is enabled. 
 
 <p align="center"> 
     <img src = "./Images/GPIOConfig.png">
