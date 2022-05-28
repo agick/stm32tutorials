@@ -29,6 +29,7 @@ Using DMA in combination to access the ADC continously instead of using CPU to h
 <p align="center"> 
     <img src = "../Chapter 4. UART/UARTpinselect.png">
 </p>
+
 - In the Pinout & Configurations tab select connectivity and click on USART2. Here you can select the Mode to Asynchronous
 <p align="center"> 
     <img src = "../Chapter 4. UART/UARTasynchronous.png">
@@ -50,7 +51,17 @@ There are many GPIO pins on the Discovery Board that can be configured to be ADC
 
 - It is important to start the ADC otherwise it will not work.
 
+
+```c
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <string.h>
+/* USER CODE END Includes */
 ```
+
+
+```c
  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

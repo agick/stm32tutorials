@@ -105,6 +105,3 @@ Press OK. Now the blue LED flashes every 500 milli seconds.
 
 ![](ezgif.com-gif-maker.gif)
 
-<p align="center"> 
-    <img src = "./getSoftware.png">
-</p>

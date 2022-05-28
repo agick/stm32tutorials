@@ -20,6 +20,7 @@ We experienced some trouble using the ST-Link as a UART so we had to connect an 
 <p align="center"> 
     <img src = "UARTpinselect.png">
 </p>
+
 - In the Pinout & Configurations tab select connectivity and click on USART2. Here you can select the Mode to Asynchronous
 <p align="center"> 
     <img src = "UARTasynchronous.png">
@@ -28,7 +29,7 @@ We experienced some trouble using the ST-Link as a UART so we had to connect an 
 - Now you can save the file and press the Build icon
 - In the main.c file you can include the string.h and stdio.h files. 
 
-```
+```c
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
@@ -41,7 +42,7 @@ We experienced some trouble using the ST-Link as a UART so we had to connect an 
 
 - In the infinite loop create a char value that you assign to the string you want to send to your PC. Use the HAL function to transmit your string. 
 
-```
+```c
   while (1)
   {
 	  char msg[] = "Hello World! \n";

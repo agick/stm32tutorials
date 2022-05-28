@@ -1,17 +1,12 @@
 # Interrupts - a step towards non blocking code
 
 
-## Why use Interrupts
-
-
-## Getting started
-
-Create a new STM32 Project File
-
-
-
+## Why use Interrupts?
+Interrupts can be very useful when programming microcontrollers since they can be used to check if a certain condition is met and as the word implies *interrupt* the infinite loop. In the interruption a state or a flag can be updated and the infinite loop continues where it left. This is very useful since it allows for a continous condition check instead of polling. There are generally two types of interrupts; 1 when a timer value reaches a specified value, 2 when an external trigger is either rising from logical 0 to logical 1, falling from logical 1 to logical 0 or both. In this project we will use the User Button as an external trigger.
 
 ## Setup GPIO External Interrupt 
+
+Create a new STM32 Project File.
 
 Since we will be using the User Button as the external interrupt we will configure PA0 to GPIO_EXTI0.
 <p align="center"> 
@@ -43,11 +38,11 @@ Go to the Code generation Tab and make sure EXTI line0 interrupt has Generate IR
     <img src = "codeGeneration.png">
 </p>
 
-If you want to have different priority levels you can assign it here. This can be useful if you have multiple interrupts. If for instance your car has an entertainment system and automatic braking when driving towards something, you want your braking system to have a higher priority than turning up the volume.
+If you want to have different priority levels you can assign it here. This can be useful if you have multiple interrupts. If for instance your car has an entertainment system and automatic braking when driving towards something. You want your braking system to have a higher priority than turning up the volume.
 
 ## Having Multiple LED Modes
 
-In this code we will setup multiple light modes (*state*) that can be changed when clicking the user button. If we were to implement it like the previous chapter we would run into a problem:
+In this code we will setup multiple light modes (*state*) that can be changed when clicking the user button. If we were to implement it like in the previous chapter we would run into a problem:
 *If we press the button while we are in a delay the press would not be detected*.
 
  This is why we set up an interrupt that will pause the infinite loop and execute the code in the interrupt Callback function and then proceed with the infinite loop. 
@@ -55,6 +50,16 @@ In this code we will setup multiple light modes (*state*) that can be changed wh
  It is generally a good idea to keep the interrupt Callback as short as possible. This is why we in the Callback update the *state* value and then check the *state* value in the infinite loop.
 
 *nModes* is the amount of different light modes
+
+```c
+/* Private variables ---------------------------------------------------------*/
+/* USER CODE BEGIN PV */
+  int state = 2;
+  int nModes = 2;
+  uint8_t first = 0;
+/* USER CODE END PV */
+```
+
 
 *first* is used to initialize the light values. Everytime the button is pressed it is reset to 0 and the *state* is updated.
 
@@ -131,6 +136,6 @@ first = 0; // Reset counter
   }
   ```
 
-
+When pressing the button the light mode changes. Even if we press while we are in a delay. 
 
 
