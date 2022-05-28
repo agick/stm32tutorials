@@ -23,7 +23,7 @@ You can make a custom label to your pins by right clicking on the desired pin an
 In the *main.c* file we add these lines of code to turn on the LEDs when the button is pressed and turn them off when the button is not pressed.
 
 We do this by checking the state of the UserButton and if it is 
-```
+```c
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -53,7 +53,7 @@ We do this by checking the state of the UserButton and if it is
 Now the Button controls whether the LEDs are turned on or off. To tidy up our code, we can make functions that turn on or off and than call the functions in the main loop.
 
 
-```
+```c
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void turnOffLEDs(){
@@ -75,7 +75,7 @@ void turnOnLEDs(){
 ```
 ...
 
-```
+```c
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

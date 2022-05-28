@@ -56,7 +56,7 @@ In this code we will setup multiple light modes (*state*) that can be changed wh
 
 *nModes* is the amount of different light modes
 
-*first* is used to initialize the light values. Everytime the button is pressed it is reset to 0.
+*first* is used to initialize the light values. Everytime the button is pressed it is reset to 0 and the *state* is updated.
 
 ```c
 /* Private user code ---------------------------------------------------------*/
@@ -71,6 +71,66 @@ first = 0; // Reset counter
 }
 /* USER CODE END 0 */
 ```
+
+
+```c
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+	  switch (state){
+
+	  case 0:
+
+		  if(first == 0){
+			  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin,RESET);
+			  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin,RESET);
+			  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin,RESET);
+			  first = 1;
+		  }
+
+		  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+
+		  HAL_Delay(500);
+		  break;
+
+	  case 1:
+		  if(first == 0){
+		  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, RESET);
+		  first = 1;
+		  }
+
+		  HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
+		  HAL_GPIO_TogglePin(LD5_GPIO_Port, LD5_Pin);
+		  HAL_GPIO_TogglePin(LD6_GPIO_Port, LD6_Pin);
+
+		  HAL_Delay(100);
+		  break;
+	  case 2:
+		  if(first == 0){
+			  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin,SET);
+			  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin,RESET);
+			  HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin,SET);
+			  HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin,RESET);
+			  first = 1;
+		  }
+
+		  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+		  HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
+		  HAL_GPIO_TogglePin(LD5_GPIO_Port, LD5_Pin);
+		  HAL_GPIO_TogglePin(LD6_GPIO_Port, LD6_Pin);
+
+
+		  HAL_Delay(300);
+		  break;
+	  }
+
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  ```
+
 
 
 
