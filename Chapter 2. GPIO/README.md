@@ -1,6 +1,6 @@
 # GPIO - General Purpose Input Output - and Custom Functions
 
-Microcontrollers are excellent for controlling sensors and actuators. Many of the pins of the microcontroller can be configured to be input or output. In this tutorial we will setup a Discovery board 
+Microcontrollers are excellent for controlling sensors and actuators. Many of the pins of the microcontroller can be configured to be input or output. In this tutorial we will setup the Discovery board with different Input and Output configurations.
 
 
 
